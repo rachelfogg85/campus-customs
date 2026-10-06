@@ -1,0 +1,25 @@
+# Local-only data pack — the real database and product photos never go to
+# GitHub. See README.md for how to place this folder locally.
+data/
+data copy 2.zip
+*.zip
+
+# Secrets — only .env.example (with placeholders) is tracked.
+.env
+backend/.env
+**/.env
+
+# Python
+backend/.venv/
+__pycache__/
+*.pyc
+
+# Node / Vite
+frontend/node_modules/
+frontend/dist/
+
+# Agent audit log artifacts that are just corruption backups, not real history
+output/*.corrupt.json
+
+# OS cruft
+.DS_Store

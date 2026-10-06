@@ -1,0 +1,127 @@
+/* Campus Customs — white-and-Yale-blue brand theme. */
+
+:root {
+  --bg: #ffffff;
+  --surface: #ffffff;
+  --surface-raised: #eef3f9;
+  --surface-sunk: #f4f7fb;
+  --line: #d9e2ee;
+  --line-soft: #e8eef6;
+
+  --ink: #0f1c2e;
+  --ink-soft: #3d4f66;
+  --ink-faint: #6b7d94;
+
+  --yale-blue: #00356b;
+  --yale-blue-dark: #00254d;
+  --yale-blue-light: #286dc0;
+  --yale-accent-soft: rgba(0, 53, 107, 0.08);
+
+  --ok: #1a7f5a;
+  --warn: #9a6700;
+  --danger: #b3261e;
+  --danger-bg: rgba(179, 38, 30, 0.08);
+
+  --radius: 14px;
+  --radius-sm: 9px;
+  --shadow-sm: 0 1px 2px rgba(15, 28, 46, 0.08);
+  --shadow-md: 0 8px 24px rgba(15, 28, 46, 0.12);
+  --shadow-lg: 0 20px 48px rgba(15, 28, 46, 0.18);
+
+  --font-sans: "Inter", system-ui, "Segoe UI", Roboto, sans-serif;
+  --font-serif: Georgia, "Times New Roman", serif;
+  /* Big, thick, catchy headline type — reserved for the brand wordmark and
+     page headings; body and card copy stay on --font-sans so the "simple
+     and clean" product grid doesn't fight the bold headline treatment. */
+  --font-display: "Archivo Black", var(--font-sans);
+
+  color-scheme: light;
+  color: var(--ink);
+  background: var(--bg);
+  font: 16px/1.5 var(--font-sans);
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body,
+#root {
+  min-height: 100%;
+}
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--ink);
+}
+
+#root {
+  display: flex;
+  flex-direction: column;
+  min-height: 100svh;
+}
+
+h1,
+h2,
+h3,
+h4 {
+  margin: 0;
+  font-weight: 650;
+  color: var(--ink);
+  letter-spacing: -0.01em;
+}
+
+/* The one big, thick, catchy headline treatment, used consistently for
+   every page's main heading (and the nav wordmark — see .nav__wordmark in
+   App.css) so the "big and catchy" brand moment isn't a one-off on Home. */
+h1 {
+  font-family: var(--font-display);
+  font-weight: 900;
+  color: var(--yale-blue);
+  letter-spacing: -0.01em;
+  line-height: 1.08;
+}
+
+p {
+  margin: 0;
+}
+
+a {
+  color: var(--yale-blue-light);
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+button {
+  font: inherit;
+  color: inherit;
+  cursor: pointer;
+  background: none;
+  border: none;
+  padding: 0;
+}
+
+button:disabled {
+  cursor: not-allowed;
+}
+
+input,
+textarea,
+select {
+  font: inherit;
+  color: inherit;
+}
+
+img {
+  max-width: 100%;
+  display: block;
+}

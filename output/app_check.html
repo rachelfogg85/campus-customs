@@ -1,0 +1,244 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Campus Customs — App Check (Problem 11)</title>
+<style>
+  :root {
+    --yale-blue: #00356b;
+    --yale-blue-light: #286dc0;
+    --ink: #0f1c2e;
+    --ink-soft: #3d4f66;
+    --ink-faint: #6b7d94;
+    --line: #d9e2ee;
+    --surface-raised: #eef3f9;
+    --ok-bg: #eaf6f0;
+    --ok-text: #14633f;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    font-family: -apple-system, "Segoe UI", Inter, Roboto, sans-serif;
+    color: var(--ink);
+    background: #ffffff;
+    line-height: 1.55;
+  }
+  header.page-head {
+    background: var(--yale-blue);
+    color: #fff;
+    padding: 36px 24px;
+  }
+  header.page-head .inner {
+    max-width: 880px;
+    margin: 0 auto;
+  }
+  header.page-head .eyebrow {
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: #bcd4ef;
+  }
+  header.page-head h1 {
+    margin: 8px 0 10px;
+    font-size: 30px;
+  }
+  header.page-head p {
+    margin: 0;
+    color: #d7e6f7;
+    font-size: 15px;
+    max-width: 640px;
+  }
+  main {
+    max-width: 880px;
+    margin: 0 auto;
+    padding: 36px 24px 60px;
+  }
+  .check {
+    margin-bottom: 48px;
+    padding-bottom: 44px;
+    border-bottom: 1px solid var(--line);
+  }
+  .check:last-of-type {
+    border-bottom: none;
+  }
+  .check__label {
+    display: inline-block;
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--yale-blue-light);
+    background: var(--surface-raised);
+    padding: 4px 10px;
+    border-radius: 999px;
+    margin-bottom: 10px;
+  }
+  .check h2 {
+    margin: 0 0 12px;
+    font-size: 21px;
+    color: var(--yale-blue);
+  }
+  .check p.caption {
+    margin: 14px 0 0;
+    font-size: 15px;
+    color: var(--ink-soft);
+    max-width: 680px;
+  }
+  .check p.caption strong {
+    color: var(--ink);
+  }
+  .screenshot {
+    display: block;
+    width: 100%;
+    max-width: 760px;
+    border: 1px solid var(--line);
+    border-radius: 10px;
+    box-shadow: 0 8px 24px rgba(15, 28, 46, 0.08);
+  }
+  .verified {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    margin-top: 14px;
+    padding: 5px 12px;
+    font-size: 12.5px;
+    font-weight: 650;
+    color: var(--ok-text);
+    background: var(--ok-bg);
+    border-radius: 999px;
+  }
+  .verified::before {
+    content: "✓";
+    font-weight: 800;
+  }
+  .notes {
+    margin-top: 48px;
+    padding: 22px 24px;
+    background: var(--surface-raised);
+    border-radius: 12px;
+  }
+  .notes h3 {
+    margin: 0 0 10px;
+    font-size: 15px;
+    color: var(--yale-blue);
+  }
+  .notes p {
+    margin: 0 0 10px;
+    font-size: 14px;
+    color: var(--ink-soft);
+  }
+  .notes p:last-child {
+    margin-bottom: 0;
+  }
+  code {
+    background: #fff;
+    border: 1px solid var(--line);
+    border-radius: 4px;
+    padding: 1px 6px;
+    font-size: 13px;
+  }
+</style>
+</head>
+<body>
+
+<header class="page-head">
+  <div class="inner">
+    <span class="eyebrow">Problem 11 — Site Testing</span>
+    <h1>Campus Customs — App Check</h1>
+    <p>
+      Three checks against the live, running app (React/Vite frontend +
+      FastAPI/pydantic-ai backend on <code>localhost</code>), each with a
+      screenshot taken during the actual test and verified against the real
+      <code>campus_customs.db</code> values — not a mockup.
+    </p>
+  </div>
+</header>
+
+<main>
+
+  <section class="check">
+    <span class="check__label">Check 1</span>
+    <h2>Chat gives honest stock and price from the database</h2>
+    <img
+      class="screenshot"
+      src="app_check_images/inventory.jpg"
+      alt="Chat panel showing an honest stock and price answer for the Grace Hopper Logo T Shirt"
+    />
+    <p class="caption">
+      Asked the chat, <em>"Is the Grace Hopper Logo T Shirt in stock in a
+      medium, and what's the price?"</em> It replied <strong>"5 available,
+      $32"</strong> — checked directly against <code>campus_customs.db</code>:
+      the <code>inventory</code> table has exactly <strong>5</strong> units of
+      size M for that product, and <code>catalogue.price</code> is exactly
+      <strong>$32.00</strong>. The agent never guesses these numbers — both
+      came from a real <code>check_stock</code> tool call against the
+      database on this turn.
+    </p>
+    <span class="verified">Verified against campus_customs.db</span>
+  </section>
+
+  <section class="check">
+    <span class="check__label">Check 2</span>
+    <h2>A category question dynamically updates the page with matching products</h2>
+    <img
+      class="screenshot"
+      src="app_check_images/dynamic-search.jpg"
+      alt="Product cards for Yale hoodies appearing on the page after asking the chat a category question"
+    />
+    <p class="caption">
+      Asked the chat a category question, <em>"What hoodies do you have?"</em>
+      — with no product named. The agent ran <code>search_products</code> and
+      a <strong>"From your chat: Matches for &ldquo;What hoodies do you
+      have?&rdquo;"</strong> shelf of real hoodie product cards appeared on
+      the page itself, above the fold, each one clickable straight into its
+      full product page.
+    </p>
+    <span class="verified">Confirmed: dynamic cards reflect the same database-backed search results shown in the chat reply</span>
+  </section>
+
+  <section class="check">
+    <span class="check__label">Check 3</span>
+    <h2>Usability feature (Problem 9): "Low stock only" filter + urgency badges</h2>
+    <img
+      class="screenshot"
+      src="app_check_images/usability-low-stock-filter.jpg"
+      alt="Products page filtered to Low stock only, showing four products each with an Only N left badge"
+    />
+    <p class="caption">
+      On the Shop All page, checking <strong>"Low stock only"</strong> filters
+      the full 102-item catalog down to exactly the <strong>4</strong>
+      products at or below the low-stock cutoff, each showing its real
+      <strong>"Only N left"</strong> badge (9, 17, 14, and 13 units) — the
+      same cutoff the badge and the filter both use, so they can never
+      disagree with each other.
+    </p>
+    <span class="verified">Verified: 102 products → 4 when filtered, each badge count matches live inventory</span>
+  </section>
+
+  <div class="notes">
+    <h3>A real bug found and fixed during this testing pass</h3>
+    <p>
+      The first attempt at Check 2 (asking <em>"What hoodies do you
+      have?"</em>) came back with <strong>zero</strong> matches and a reply
+      claiming the catalog had no hoodies — which is false; dozens exist.
+    </p>
+    <p>
+      Root cause: <code>tools.py</code>'s search scored matches with plain
+      substring checks, and the catalog's <code>garment_type</code> field
+      says <em>"pullover hoodie"</em> (singular) while the shopper's word was
+      <em>"hoodies"</em> (plural) — <code>"hoodies"</code> is never a
+      substring of <code>"hoodie"</code>, so the match silently failed.
+    </p>
+    <p>
+      Fixed by having the search check both the singular and plural form of
+      every search token before scoring a match, re-verified directly
+      against <code>search_products()</code> (0 → 27 matches for the exact
+      same query) before retaking the Check 2 screenshot above.
+    </p>
+  </div>
+
+</main>
+</body>
+</html>

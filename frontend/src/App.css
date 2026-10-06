@@ -1,0 +1,1403 @@
+/* Layout, nav, storefront, and chat styling for Campus Customs. */
+
+.shell {
+  min-height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+/* ---------- Nav ---------- */
+
+.nav {
+  position: sticky;
+  top: 0;
+  z-index: 30;
+  background: var(--surface);
+  border-bottom: 1px solid var(--line);
+}
+
+.nav__inner {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 14px 24px;
+  display: flex;
+  align-items: center;
+  gap: 24px;
+}
+
+.nav__brand {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  color: var(--ink);
+  flex: none;
+}
+
+.nav__brand:hover {
+  text-decoration: none;
+}
+
+.nav__mark {
+  width: 36px;
+  height: 36px;
+  display: grid;
+  place-items: center;
+  border-radius: 10px;
+  background: var(--yale-blue);
+  color: #ffffff;
+  flex: none;
+}
+
+.nav__mark-icon {
+  width: 21px;
+  height: 21px;
+}
+
+.nav__wordmark {
+  font-family: var(--font-display);
+  font-weight: 900;
+  font-size: 15px;
+  letter-spacing: -0.01em;
+}
+
+.nav__burger {
+  display: none;
+  flex: none;
+  flex-direction: column;
+  justify-content: center;
+  gap: 4px;
+  width: 36px;
+  height: 36px;
+  margin-left: auto;
+  border-radius: 8px;
+}
+
+.nav__burger:hover {
+  background: var(--surface-raised);
+}
+
+.nav__burger span {
+  display: block;
+  width: 20px;
+  height: 2px;
+  margin: 0 auto;
+  background: var(--ink);
+  border-radius: 2px;
+}
+
+.nav__menu {
+  display: flex;
+  align-items: center;
+  flex: 1;
+  gap: 24px;
+}
+
+.nav__links {
+  display: flex;
+  gap: 4px;
+  flex: 1;
+}
+
+.nav__link {
+  padding: 8px 14px;
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--ink-soft);
+  border-radius: 999px;
+  transition: all 0.15s;
+}
+
+.nav__link:hover {
+  color: var(--ink);
+  background: var(--surface-raised);
+  text-decoration: none;
+}
+
+.nav__link.is-active {
+  color: var(--ink);
+  background: var(--yale-accent-soft);
+}
+
+.nav__auth {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex: none;
+}
+
+.nav__cart {
+  position: relative;
+  display: grid;
+  place-items: center;
+  width: 36px;
+  height: 36px;
+  color: var(--ink);
+  border-radius: 8px;
+}
+
+.nav__cart:hover {
+  background: var(--surface-raised);
+  text-decoration: none;
+}
+
+.nav__cart-icon {
+  width: 21px;
+  height: 21px;
+}
+
+.nav__cart-badge {
+  position: absolute;
+  top: 1px;
+  right: 1px;
+  min-width: 16px;
+  height: 16px;
+  padding: 0 4px;
+  display: grid;
+  place-items: center;
+  font-size: 10px;
+  font-weight: 700;
+  color: #fff;
+  background: var(--yale-blue);
+  border-radius: 999px;
+  border: 2px solid var(--surface);
+}
+
+.nav__greeting {
+  font-size: 13.5px;
+  font-weight: 600;
+  color: var(--ink-soft);
+}
+
+.nav__cta {
+  padding: 9px 16px;
+  font-size: 13.5px;
+  font-weight: 650;
+  color: #ffffff;
+  background: var(--yale-blue);
+  border-radius: 999px;
+  transition: background 0.15s, transform 0.1s;
+}
+
+.nav__cta:hover {
+  background: var(--yale-blue-light);
+  text-decoration: none;
+}
+
+/* Below this width the five nav items (brand aside) measure wider than the
+   screen and wrap mid-word — verified on a 375px viewport before adding
+   this breakpoint, not a guess. A hamburger + dropdown replaces the row. */
+@media (max-width: 760px) {
+  .nav__burger {
+    display: flex;
+  }
+
+  .nav__menu {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 2px;
+    padding: 10px 20px 18px;
+    background: var(--surface);
+    border-bottom: 1px solid var(--line);
+    box-shadow: var(--shadow-md);
+  }
+
+  .nav__menu.is-open {
+    display: flex;
+  }
+
+  .nav__links {
+    flex-direction: column;
+    flex: none;
+    gap: 2px;
+  }
+
+  .nav__link {
+    width: 100%;
+    text-align: left;
+    border-radius: var(--radius-sm);
+  }
+
+  .nav__auth {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 8px;
+    margin-top: 8px;
+    padding-top: 12px;
+    border-top: 1px solid var(--line-soft);
+  }
+
+  .nav__greeting {
+    padding: 0 14px;
+  }
+
+  .nav__cta {
+    text-align: center;
+  }
+}
+
+/* ---------- Page shell ---------- */
+
+.main {
+  flex: 1;
+  width: 100%;
+}
+
+.page {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 36px 24px 64px;
+}
+
+.page--narrow {
+  max-width: 720px;
+}
+
+.page__head {
+  margin-bottom: 28px;
+}
+
+.page__head p {
+  margin-top: 6px;
+  color: var(--ink-faint);
+  font-size: 14px;
+}
+
+.eyebrow {
+  display: inline-block;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--yale-blue-light);
+  margin-bottom: 10px;
+}
+
+.footer {
+  padding: 24px;
+  text-align: center;
+  font-size: 12.5px;
+  color: var(--ink-faint);
+  border-top: 1px solid var(--line);
+}
+
+.btn {
+  display: inline-block;
+  padding: 12px 22px;
+  font-size: 14.5px;
+  font-weight: 650;
+  border-radius: 999px;
+  transition: all 0.15s;
+}
+
+.btn--primary {
+  color: #ffffff;
+  background: var(--yale-blue);
+}
+
+.btn--primary:hover {
+  background: var(--yale-blue-light);
+  text-decoration: none;
+}
+
+.btn--secondary {
+  color: var(--ink);
+  background: var(--surface-raised);
+  border: 1px solid var(--line);
+}
+
+.btn--secondary:hover {
+  border-color: var(--yale-blue);
+  text-decoration: none;
+}
+
+.notice {
+  padding: 20px;
+  font-size: 14px;
+  color: var(--ink-soft);
+  background: var(--surface);
+  border: 1px dashed var(--line);
+  border-radius: var(--radius);
+}
+
+.notice--error {
+  color: var(--danger);
+  background: var(--danger-bg);
+  border: 1px solid rgba(179, 38, 30, 0.25);
+  border-style: solid;
+  margin-bottom: 16px;
+}
+
+/* ---------- Home ---------- */
+
+.hero {
+  padding: 48px 0 40px;
+  border-bottom: 1px solid var(--line);
+  margin-bottom: 40px;
+}
+
+.hero__text {
+  max-width: 640px;
+}
+
+.hero h1 {
+  font-size: 42px;
+  line-height: 1.12;
+  margin: 10px 0 16px;
+}
+
+.hero p {
+  font-size: 16px;
+  color: var(--ink-soft);
+  line-height: 1.6;
+  margin-bottom: 24px;
+}
+
+.features {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  margin-bottom: 48px;
+}
+
+.features__row {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 20px;
+}
+
+@media (max-width: 640px) {
+  .features__row {
+    grid-template-columns: 1fr;
+  }
+}
+
+.feature {
+  padding: 22px;
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+}
+
+.feature__icon {
+  width: 30px;
+  height: 30px;
+  margin-bottom: 10px;
+  color: var(--yale-blue);
+}
+
+.feature h3 {
+  font-size: 15.5px;
+  margin-bottom: 8px;
+  color: var(--yale-blue-light);
+}
+
+.feature p {
+  font-size: 13.5px;
+  color: var(--ink-soft);
+  line-height: 1.55;
+}
+
+.feature-banner {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 18px 22px;
+  background: var(--yale-accent-soft);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+}
+
+@media (max-width: 560px) {
+  .feature-banner {
+    flex-direction: column;
+    align-items: stretch;
+    text-align: center;
+  }
+}
+
+.feature-banner__text {
+  display: flex;
+  align-items: baseline;
+  gap: 10px;
+  min-width: 0;
+}
+
+@media (max-width: 560px) {
+  .feature-banner__text {
+    flex-direction: column;
+    align-items: center;
+    gap: 2px;
+  }
+}
+
+.feature-banner h3 {
+  font-size: 14px;
+  white-space: nowrap;
+  color: var(--yale-blue);
+}
+
+.feature-banner p {
+  font-size: 13.5px;
+  font-style: italic;
+  color: var(--ink-soft);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.feature-banner__cta {
+  display: inline-block;
+  flex: none;
+  padding: 10px 20px;
+  font-size: 13.5px;
+  font-weight: 650;
+  font-style: normal;
+  color: #ffffff;
+  background: var(--yale-blue);
+  border-radius: 999px;
+  transition: background 0.15s, transform 0.1s;
+}
+
+.feature-banner__cta:hover {
+  background: var(--yale-blue-light);
+}
+
+.home-products__head {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  margin-bottom: 18px;
+}
+
+.home-products__head h2 {
+  font-size: 20px;
+}
+
+.home-products__head a {
+  font-size: 13.5px;
+  font-weight: 600;
+}
+
+/* ---------- Toolbar ---------- */
+
+.toolbar {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 24px;
+}
+
+.toolbar input,
+.toolbar select {
+  padding: 11px 14px;
+  font-size: 14px;
+  color: var(--ink);
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-sm);
+}
+
+.toolbar input {
+  flex: 1;
+  min-width: 180px;
+}
+
+.toolbar input:focus,
+.toolbar select:focus {
+  outline: none;
+  border-color: var(--yale-blue);
+}
+
+.toolbar__checkbox {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  font-size: 13.5px;
+  font-weight: 600;
+  color: var(--ink-soft);
+  white-space: nowrap;
+}
+
+.toolbar__checkbox input {
+  width: 15px;
+  height: 15px;
+  accent-color: var(--yale-blue);
+}
+
+@media (max-width: 560px) {
+  /* The garment-type <select> sizes itself off its longest option text
+     ("long-sleeve performance shirt"), which is wider than a phone screen
+     next to a search box in one row — stack them instead of clipping. */
+  .toolbar {
+    flex-direction: column;
+  }
+
+  .toolbar select {
+    width: 100%;
+  }
+}
+
+/* ---------- Product grid + cards ---------- */
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(230px, 1fr));
+  gap: 18px;
+}
+
+.product-card {
+  display: flex;
+  flex-direction: column;
+  color: var(--ink);
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  overflow: hidden;
+  transition: border-color 0.15s, transform 0.15s, box-shadow 0.15s;
+}
+
+.product-card:hover {
+  border-color: var(--yale-blue);
+  transform: translateY(-3px);
+  box-shadow: var(--shadow-md);
+  text-decoration: none;
+}
+
+.product-card--skeleton {
+  height: 300px;
+  background: linear-gradient(
+    100deg,
+    var(--surface) 30%,
+    var(--surface-raised) 50%,
+    var(--surface) 70%
+  );
+  background-size: 220% 100%;
+  animation: shimmer 1.4s infinite linear;
+}
+
+@keyframes shimmer {
+  to {
+    background-position: -220% 0;
+  }
+}
+
+.product-card__image {
+  position: relative;
+  aspect-ratio: 1 / 1;
+  background: var(--surface-sunk);
+}
+
+.product-card__image img {
+  width: 100%;
+  height: 100%;
+  /* `cover` cropped each photo differently depending on its own source
+     aspect ratio — a close, tight shot for one product and a full-length
+     shot cut off at the collar for another, in boxes that were already the
+     same size. `contain` shows the whole garment every time, letterboxed
+     on the same neutral background, so framing is consistent card to card
+     even though the source photos vary (which `contain` can't fix). */
+  object-fit: contain;
+  padding: 12px;
+}
+
+.product-card__badge {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  padding: 4px 9px;
+  font-size: 10.5px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: #ffffff;
+  background: var(--yale-blue-light);
+  border-radius: 999px;
+}
+
+.product-card__badge--low {
+  background: var(--warn);
+  color: #3a2800;
+}
+
+.product-card__body {
+  padding: 14px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  flex: 1;
+}
+
+.product-card__name {
+  font-size: 14.5px;
+  font-weight: 650;
+  line-height: 1.3;
+  /* Always exactly one line — a wrapped title is what made the grid read as
+     cluttered; truncating consistently is what makes every card scannable
+     at a glance regardless of how long an individual product's name is. */
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.product-card__desc {
+  font-size: 12.5px;
+  color: var(--ink-faint);
+  line-height: 1.5;
+  flex: 1;
+  /* Capped at two lines everywhere, not just by trimming the string in JS —
+     a hard CSS clamp holds regardless of card width or font rendering. */
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.product-card__foot {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  margin-top: 6px;
+}
+
+.product-card__price {
+  font-size: 15px;
+  font-weight: 700;
+  color: var(--yale-blue-light);
+  flex: none;
+}
+
+.product-card__type {
+  font-size: 11px;
+  color: var(--ink-faint);
+  text-transform: capitalize;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  text-align: right;
+  min-width: 0;
+}
+
+/* ---------- Product detail ---------- */
+
+.back-link {
+  display: inline-block;
+  margin-bottom: 20px;
+  font-size: 13.5px;
+  color: var(--ink-soft);
+}
+
+.detail {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  gap: 40px;
+  align-items: start;
+}
+
+@media (max-width: 860px) {
+  .detail {
+    grid-template-columns: 1fr;
+  }
+}
+
+.detail__image {
+  background: var(--surface-sunk);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  overflow: hidden;
+  aspect-ratio: 1 / 1;
+}
+
+.detail__image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.detail__info h1 {
+  font-size: 28px;
+  margin: 6px 0 10px;
+}
+
+.detail__price {
+  font-size: 22px;
+  font-weight: 700;
+  color: var(--yale-blue-light);
+  margin-bottom: 18px;
+}
+
+.detail__desc {
+  font-size: 14.5px;
+  line-height: 1.65;
+  color: var(--ink-soft);
+  margin-bottom: 24px;
+}
+
+.detail__row {
+  margin-bottom: 22px;
+}
+
+.detail__row h4 {
+  font-size: 11.5px;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--ink-faint);
+  margin-bottom: 10px;
+}
+
+.chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.chip {
+  padding: 5px 12px;
+  font-size: 12.5px;
+  color: var(--ink-soft);
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  text-transform: capitalize;
+}
+
+.size-picker {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.size-option {
+  min-width: 46px;
+  padding: 9px 12px;
+  font-size: 13.5px;
+  font-weight: 650;
+  color: var(--ink);
+  background: var(--surface);
+  border: 1.5px solid var(--line);
+  border-radius: var(--radius-sm);
+  transition: border-color 0.15s, background 0.15s;
+}
+
+.size-option:hover:not(.is-disabled) {
+  border-color: var(--yale-blue);
+}
+
+.size-option.is-selected {
+  color: #fff;
+  background: var(--yale-blue);
+  border-color: var(--yale-blue);
+}
+
+.size-option.is-disabled {
+  color: var(--ink-faint);
+  background: var(--surface-sunk);
+  text-decoration: line-through;
+  cursor: not-allowed;
+}
+
+.detail__total-stock {
+  margin-top: 10px;
+  font-size: 12.5px;
+  color: var(--ink-faint);
+}
+
+.detail__add-to-cart {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.qty-stepper {
+  display: flex;
+  align-items: center;
+  gap: 2px;
+  border: 1px solid var(--line);
+  border-radius: var(--radius-sm);
+  overflow: hidden;
+}
+
+.qty-stepper button {
+  width: 34px;
+  height: 38px;
+  display: grid;
+  place-items: center;
+  font-size: 16px;
+  color: var(--ink);
+  background: var(--surface-raised);
+}
+
+.qty-stepper button:disabled {
+  color: var(--ink-faint);
+  cursor: not-allowed;
+}
+
+.qty-stepper span {
+  width: 32px;
+  text-align: center;
+  font-size: 14px;
+  font-weight: 650;
+}
+
+.detail__added-note {
+  margin-top: 12px;
+  font-size: 13.5px;
+  color: var(--ok);
+  font-weight: 600;
+}
+
+/* ---------- Forms (login / signup) ---------- */
+
+.prose {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.prose p {
+  font-size: 15px;
+  line-height: 1.7;
+  color: var(--ink-soft);
+}
+
+.auth-form {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  padding: 26px;
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+}
+
+.auth-form__row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+}
+
+.auth-form label {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--ink-soft);
+}
+
+.auth-form input {
+  padding: 11px 13px;
+  font-size: 14px;
+  color: var(--ink);
+  background: var(--surface-sunk);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-sm);
+}
+
+.auth-form input:focus {
+  outline: none;
+  border-color: var(--yale-blue);
+}
+
+.auth-form .btn {
+  align-self: flex-start;
+}
+
+/* ---------- Floating chat widget ---------- */
+
+.chat-widget {
+  position: fixed;
+  right: 22px;
+  bottom: 22px;
+  z-index: 40;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 12px;
+}
+
+/* Closed: a labeled pill, not just an icon — easy to miss a bare circle in
+   the corner on a first visit. A few pulses on load draw the eye without
+   nagging forever. Open: shrinks to a plain circular close button. */
+.chat-widget__toggle {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  padding: 15px 22px 15px 18px;
+  font-size: 15px;
+  font-weight: 700;
+  color: #ffffff;
+  background: var(--yale-blue);
+  border-radius: 999px;
+  box-shadow: var(--shadow-lg);
+  transition: background 0.15s, transform 0.15s;
+  animation: chat-widget-pulse 2s ease-out 3;
+}
+
+.chat-widget__toggle.is-open {
+  width: 56px;
+  height: 56px;
+  padding: 0;
+  justify-content: center;
+  font-size: 22px;
+  animation: none;
+}
+
+.chat-widget__toggle-icon {
+  font-size: 19px;
+  line-height: 1;
+}
+
+.chat-widget__toggle-label {
+  white-space: nowrap;
+}
+
+.chat-widget__toggle:hover {
+  background: var(--yale-blue-light);
+  transform: scale(1.05);
+}
+
+@keyframes chat-widget-pulse {
+  0% {
+    box-shadow: var(--shadow-lg), 0 0 0 0 rgba(0, 53, 107, 0.45);
+  }
+  70% {
+    box-shadow: var(--shadow-lg), 0 0 0 16px rgba(0, 53, 107, 0);
+  }
+  100% {
+    box-shadow: var(--shadow-lg), 0 0 0 0 rgba(0, 53, 107, 0);
+  }
+}
+
+.chat-widget__panel {
+  width: min(360px, calc(100vw - 44px));
+  height: min(480px, calc(100vh - 140px));
+  display: flex;
+  flex-direction: column;
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow-lg);
+  overflow: hidden;
+}
+
+.chat-widget__head {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 10px;
+  padding: 14px 16px;
+  background: var(--surface-raised);
+  border-bottom: 1px solid var(--line);
+}
+
+.chat-widget__head h2 {
+  font-size: 14.5px;
+}
+
+.chat-widget__head p {
+  margin-top: 3px;
+  font-size: 11.5px;
+  color: var(--ink-faint);
+}
+
+.chat-widget__close {
+  font-size: 20px;
+  line-height: 1;
+  color: var(--ink-faint);
+}
+
+.chat-widget__close:hover {
+  color: var(--ink);
+}
+
+.chat-widget__scroll {
+  flex: 1;
+  overflow-y: auto;
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.chat-widget__empty {
+  margin: auto 0;
+  text-align: center;
+  font-size: 13px;
+  color: var(--ink-faint);
+}
+
+/* A column flex wrapper (not a row) holding the bubble and any product
+   cards — max-width lives here. Putting max-width directly on a row-flex
+   item whose content uses overflow-wrap:anywhere makes some browsers
+   collapse the item to a near-zero min-content width instead of growing
+   up to the cap, so the long-text element must not itself be a row item. */
+.bubble-row {
+  display: flex;
+  flex-direction: column;
+  max-width: 85%;
+}
+
+.bubble-row--user {
+  align-self: flex-end;
+  align-items: flex-end;
+}
+
+.bubble-row--assistant {
+  align-self: flex-start;
+  align-items: flex-start;
+}
+
+.bubble {
+  padding: 10px 13px;
+  font-size: 13.5px;
+  line-height: 1.5;
+  border-radius: var(--radius-sm);
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+  max-width: 100%;
+}
+
+.bubble-row--user .bubble {
+  background: var(--yale-blue);
+  color: #ffffff;
+  border-bottom-right-radius: 3px;
+}
+
+.bubble-row--assistant .bubble {
+  background: var(--surface-raised);
+  color: var(--ink);
+  border-bottom-left-radius: 3px;
+}
+
+.bubble--error {
+  background: var(--danger-bg) !important;
+  color: var(--danger) !important;
+  border: 1px solid rgba(179, 38, 30, 0.25);
+}
+
+.bubble--thinking {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  padding: 13px 15px;
+}
+
+.dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--ink-faint);
+  animation: bounce 1.3s infinite ease-in-out;
+}
+
+.dot:nth-child(2) {
+  animation-delay: 0.16s;
+}
+.dot:nth-child(3) {
+  animation-delay: 0.32s;
+}
+
+@keyframes bounce {
+  0%,
+  60%,
+  100% {
+    transform: translateY(0);
+    opacity: 0.4;
+  }
+  30% {
+    transform: translateY(-5px);
+    opacity: 1;
+  }
+}
+
+/* Markdown inside assistant replies. */
+
+.md > *:first-child {
+  margin-top: 0;
+}
+.md > *:last-child {
+  margin-bottom: 0;
+}
+
+.md p {
+  margin: 0 0 8px;
+}
+
+.md h4 {
+  margin: 10px 0 5px;
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--yale-blue);
+}
+
+.md ul,
+.md ol {
+  margin: 0 0 8px;
+  padding-left: 18px;
+}
+
+.md li {
+  margin-bottom: 4px;
+}
+
+.md code {
+  padding: 1px 5px;
+  font-size: 12px;
+  background: rgba(0, 53, 107, 0.08);
+  border-radius: 4px;
+}
+
+.md a {
+  color: var(--yale-blue-light);
+}
+
+.md__tablewrap {
+  margin: 0 0 8px;
+  overflow-x: auto;
+}
+
+.md table {
+  border-collapse: collapse;
+  width: 100%;
+  font-size: 12px;
+}
+
+.md th,
+.md td {
+  padding: 5px 8px;
+  text-align: left;
+  vertical-align: top;
+  border: 1px solid var(--line);
+}
+
+.md th {
+  font-weight: 650;
+  color: var(--yale-blue);
+  background: var(--yale-accent-soft);
+  white-space: nowrap;
+}
+
+/* A short note in the chat pointing at the page-level results (see
+   .chat-matches below) instead of duplicating product cards in the bubble. */
+
+.chat-widget__match-note {
+  margin-top: 6px;
+  font-size: 11.5px;
+  color: var(--ink-faint);
+  font-style: italic;
+}
+
+/* ---------- Chat-driven search results, shown on the page itself ---------- */
+
+.chat-matches {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 18px 24px 0;
+}
+
+.chat-matches__head {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 16px;
+  padding-bottom: 16px;
+  border-bottom: 1px solid var(--line);
+}
+
+.chat-matches__head h2 {
+  font-size: 19px;
+  margin-top: 2px;
+}
+
+.chat-matches__clear {
+  padding: 7px 14px;
+  font-size: 12.5px;
+  font-weight: 600;
+  color: var(--ink-soft);
+  background: var(--surface-raised);
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  white-space: nowrap;
+}
+
+.chat-matches__clear:hover {
+  border-color: var(--yale-blue);
+  color: var(--yale-blue);
+}
+
+.chat-widget__composer {
+  display: flex;
+  gap: 8px;
+  padding: 12px;
+  border-top: 1px solid var(--line);
+}
+
+.chat-widget__composer textarea {
+  flex: 1;
+  padding: 9px 11px;
+  font-size: 13.5px;
+  line-height: 1.4;
+  color: var(--ink);
+  background: var(--surface-sunk);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-sm);
+  resize: none;
+}
+
+.chat-widget__composer textarea:focus {
+  outline: none;
+  border-color: var(--yale-blue);
+}
+
+.chat-widget__send {
+  padding: 0 16px;
+  font-size: 13px;
+  font-weight: 650;
+  color: #ffffff;
+  background: var(--yale-blue);
+  border-radius: var(--radius-sm);
+}
+
+.chat-widget__send:hover:not(:disabled) {
+  background: var(--yale-blue-light);
+}
+
+.chat-widget__send:disabled {
+  background: var(--line);
+  color: var(--ink-faint);
+}
+
+/* ---------- Cart page ---------- */
+
+.cart-lines {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  margin-bottom: 24px;
+}
+
+.cart-line {
+  display: grid;
+  grid-template-columns: 72px 1fr auto auto;
+  align-items: center;
+  gap: 16px;
+  padding: 14px;
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+}
+
+.cart-line__image {
+  width: 72px;
+  height: 72px;
+  border-radius: var(--radius-sm);
+  overflow: hidden;
+  background: var(--surface-sunk);
+  flex: none;
+}
+
+.cart-line__image img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  padding: 6px;
+}
+
+.cart-line__info {
+  min-width: 0;
+}
+
+.cart-line__name {
+  display: block;
+  font-size: 14.5px;
+  font-weight: 650;
+  color: var(--ink);
+  margin-bottom: 2px;
+}
+
+.cart-line__meta {
+  font-size: 12.5px;
+  color: var(--ink-faint);
+  margin-bottom: 2px;
+}
+
+.cart-line__price {
+  font-size: 12.5px;
+  color: var(--ink-soft);
+}
+
+.cart-line__controls {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 6px;
+}
+
+.cart-line__remove {
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--danger);
+}
+
+.cart-line__remove:hover {
+  text-decoration: underline;
+}
+
+.cart-line__total {
+  font-size: 15px;
+  font-weight: 700;
+  color: var(--yale-blue);
+  min-width: 64px;
+  text-align: right;
+}
+
+.cart-summary {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  padding: 16px 0;
+  border-top: 2px solid var(--line);
+  font-size: 16px;
+  font-weight: 650;
+}
+
+.cart-summary__amount {
+  font-size: 20px;
+  color: var(--yale-blue);
+}
+
+.cart-summary__note {
+  font-size: 12.5px;
+  color: var(--ink-faint);
+  font-style: italic;
+}
+
+@media (max-width: 560px) {
+  .cart-line {
+    grid-template-columns: 56px 1fr;
+    grid-template-rows: auto auto;
+  }
+
+  .cart-line__image {
+    width: 56px;
+    height: 56px;
+  }
+
+  .cart-line__controls,
+  .cart-line__total {
+    grid-column: 1 / -1;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    text-align: left;
+  }
+}
