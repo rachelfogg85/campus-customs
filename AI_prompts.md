@@ -392,6 +392,62 @@ not yet tied to a specific problem number live under **Setup**.
 >
 > README.md should explain how to run the front end and back end after placing the data pack
 
+**Prompt 2**
+
+> this is the url, my user name is rachelfogg85: https://github.com/
+
+**Prompt 3**
+
+> where do i make the repo
+
+**Prompt 4**
+
+> [screenshot of Rachel's GitHub Repositories page]
+
+**Prompt 5**
+
+> (follow-up selection) Done, it's created — confirming the empty "campus-customs" repo was created on GitHub.
+
+**Prompt 6**
+
+> [Rachel pasted her GitHub personal access token directly into the chat. Redacted here and not reproduced — she was told to treat it as compromised and revoke it immediately, since pasting it here exposed it outside her own terminal.]
+
+**Prompt 7**
+
+> i put it in the terminal too
+
+**Prompt 8**
+
+> i made a new token, where should i put it
+
+**Prompt 9**
+
+> it hasnt asked me
+
+**Prompt 10**
+
+> git push -u origin main
+
+**Prompt 11**
+
+> i did
+
+**Prompt 12**
+
+> git push -u origin main
+
+**Prompt 13**
+
+> cd "/Users/rachelfogg/Documents/Yale/Fall 1/MGT 409_AI Foundations for Managers/hw4" && git push -u origin main
+
+**Prompt 14**
+
+> i did
+
+**Prompt 15**
+
+> did you update AI_prompts.md?
+
 ---
 
 
