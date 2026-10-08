@@ -450,4 +450,20 @@ not yet tied to a specific problem number live under **Setup**.
 
 ---
 
+## Plain-English Project Summary (ad hoc, outside the numbered problems)
+
+**Prompt 1**
+
+> can you please create a white up for me to better understand everything that happened between problems 1-13 in laymen terms
+
+**Prompt 2**
+
+> the things called "a few things that happened outside" should be included in problem 9 as they are related to the look and feel of the website
+
+**Prompt 3**
+
+> thank you, please make sure to document this all within the AI_prompts.md
+
+---
+
 
